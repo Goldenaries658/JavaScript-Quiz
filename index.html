@@ -55,13 +55,13 @@
 
     <div class="row">
       <div class="col-md-2">
-        <div id="timer" class="row" style="margin: 5px 0 0 5px;">
+        <div id="timer" class="row">
           <button type="button" class="btn btn-primary">
-            Time Remaining: 0:00
+            Time Remaining: 10:00
           </button>
         </div>
 
-        <div id="questionCount" class="row" style="margin: 5px 0 0 5px;">
+        <div id="question-count" class="row">
           <button type="button" class="btn btn-primary">Question: 0/20</button>
         </div>
       </div>
@@ -70,7 +70,7 @@
     <br /><br />
 
     <div class="container">
-      <div class="jumbotron" style="display: none;">
+      <div id="ready-dialogue" class="jumbotron">
         <h1 class="display-3">Ready?</h1>
         <p class="lead">
           This is a quiz based on the fundamental of JavaScript!
@@ -91,7 +91,7 @@
       </div>
 
       <!-- The quiz itself -->
-      <div class="jumbotron" style="display: inherit; padding-bottom: 0;">
+      <div id="quiz-dialogue" class="jumbotron">
         <h1 id="question-number"></h1>
         <p id="question" class="lead">
           Placeholder question
@@ -124,12 +124,12 @@
           </div>
         </div>
 
-        <br><br><br>
+        <br /><br /><br />
 
         <div class="row">
           <div class="col-md-12">
             <p class="lead">
-              <a id="next-button" class="btn btn-primary btn-lg" role="button" style="display: block;"
+              <a id="next-button" class="btn btn-primary btn-lg" role="button"
                 >Next</a
               >
             </p>
@@ -139,9 +139,7 @@
     </div>
 
     <footer style="width: 100%; bottom: 0px;">
-      <small style="display: block; text-align: center;"
-        >Copyright &copy Jacob Houston.</small
-      >
+      <small>Copyright &copy Jacob Houston.</small>
     </footer>
 
     <script
