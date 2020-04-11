@@ -70,7 +70,7 @@
     <br /><br />
 
     <div class="container">
-      <div class="jumbotron">
+      <div class="jumbotron" style="display: none;">
         <h1 class="display-3">Ready?</h1>
         <p class="lead">
           This is a quiz based on the fundamental of JavaScript!
@@ -84,12 +84,61 @@
           To pass, score at least 16 out of 20.
         </p>
         <p class="lead">
-          <a class="btn btn-primary btn-lg" href="#" role="button">Start</a>
+          <a id="start-button" class="btn btn-primary btn-lg" role="button"
+            >Start</a
+          >
         </p>
+      </div>
+
+      <!-- The quiz itself -->
+      <div class="jumbotron" style="display: inherit; padding-bottom: 0;">
+        <h1 id="question-number"></h1>
+        <p id="question" class="lead">
+          Placeholder question
+        </p>
+        <hr class="my-4" />
+
+        <div class="row">
+          <div class="col-md-6">
+            <button id="answer1" type="button" class="btn btn-secondary answer">
+              Answer 1
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button id="answer2" type="button" class="btn btn-secondary answer">
+              Answer 2
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <button id="answer3" type="button" class="btn btn-secondary answer">
+              Answer 2
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button id="answer4" type="button" class="btn btn-secondary answer">
+              Answer 3
+            </button>
+          </div>
+        </div>
+
+        <br><br><br>
+
+        <div class="row">
+          <div class="col-md-12">
+            <p class="lead">
+              <a id="next-button" class="btn btn-primary btn-lg" role="button" style="display: block;"
+                >Next</a
+              >
+            </p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <footer style="width: 100%; position: fixed; bottom: 0px;">
+    <footer style="width: 100%; bottom: 0px;">
       <small style="display: block; text-align: center;"
         >Copyright &copy Jacob Houston.</small
       >
