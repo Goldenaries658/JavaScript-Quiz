@@ -1,5 +1,4 @@
 // Object with questions and answers stored
-
 var q0 = {
   question:
     'Which of the following is the correct syntax to print a page using JavaScript?',
@@ -52,16 +51,66 @@ var q7 = {
 var questionCaller = [q0, q1, q2, q3, q4, q5, q6, q7];
 var questionCounter = '';
 
+// This generates a question and randomly places the correect answer
+function questionGenerator() {
+  var currentQuestion = questionCaller[questionCounter].question;
+  var currentTrueAnswer = questionCaller[questionCounter].true;
+  var currentFalseAnswer = questionCaller[questionCounter].false;
+
+  $('#question').text(currentQuestion);
+
+  function rand() {
+    x = Math.floor(Math.random() * 10);
+    return x;
+  }
+  randomiser = rand();
+  console.log(randomiser);
+  console.log(currentTrueAnswer);
+  console.log(currentFalseAnswer);
+
+  if (randomiser < 2.5) {
+    $('#answer0').text(currentTrueAnswer);
+    $('#answer1').text(currentFalseAnswer[0]);
+    $('#answer2').text(currentFalseAnswer[1]);
+    $('#answer3').text(currentFalseAnswer[2]);
+  } else if (randomiser >= 2.5 && randomiser < 5) {
+    $('#answer0').text(currentFalseAnswer[0]);
+    $('#answer1').text(currentTrueAnswer);
+    $('#answer2').text(currentFalseAnswer[1]);
+    $('#answer3').text(currentFalseAnswer[2]);
+  } else if (randomiser >= 5 && randomiser < 7.5) {
+    $('#answer0').text(currentFalseAnswer[0]);
+    $('#answer1').text(currentFalseAnswer[1]);
+    $('#answer2').text(currentTrueAnswer);
+    $('#answer3').text(currentFalseAnswer[2]);
+  } else {
+    $('#answer0').text(currentFalseAnswer[0]);
+    $('#answer1').text(currentFalseAnswer[1]);
+    $('#answer2').text(currentFalseAnswer[2]);
+    $('#answer3').text(currentTrueAnswer);
+  }
+}
+
 $(function () {
+  // Starting the quiz
   $('#start-button').on('click', function () {
     $('#ready-dialogue').css('display', 'none');
     $('#quiz-dialogue').css('display', 'inherit');
-        questionCounter = 0;
-        var currentQuestion = questionCaller[questionCounter].question;
-        var currentTrueAnswer = questionCaller[questionCounter].true;
-        var currentfalseAnswer = questionCaller[questionCounter].false;
+    $('#question-number').text('Question 1');
+    $('#question-count').text('Question: 1/20');
+    $('.progress-display').show(500);
+    questionCounter = 0;
+    questionGenerator();
+  });
 
-        $('#question').text(currentQuestion);
-
+  // Progressing through the quiz
+  $('#next-button').on('click', function () {
+    questionCounter++;
+    var questionNumber = questionCounter + 1;
+    $('#question-number').text('Question ' + questionNumber);
+    $('#question-count').text('Question: ' + questionNumber + '/20');
+    $('.answer').hide(250);
+    questionGenerator();
+    $('.answer').show(250);
   });
 });

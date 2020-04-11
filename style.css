@@ -1,5 +1,5 @@
-#timer,
-#question-count {
+.progress-display {
+  display: none;
   margin: 5px 0 0 5px;
 }
 
@@ -31,4 +31,8 @@ small {
 
 small {
   text-align: center;
+}
+
+footer {
+  width: 100%; bottom: 0px;
 }
