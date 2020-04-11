@@ -51,3 +51,17 @@ var q7 = {
 
 var questionCaller = [q0, q1, q2, q3, q4, q5, q6, q7];
 var questionCounter = '';
+
+$(function () {
+  $('#start-button').on('click', function () {
+    $('#ready-dialogue').css('display', 'none');
+    $('#quiz-dialogue').css('display', 'inherit');
+        questionCounter = 0;
+        var currentQuestion = questionCaller[questionCounter].question;
+        var currentTrueAnswer = questionCaller[questionCounter].true;
+        var currentfalseAnswer = questionCaller[questionCounter].false;
+
+        $('#question').text(currentQuestion);
+
+  });
+});
