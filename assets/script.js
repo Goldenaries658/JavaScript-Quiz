@@ -103,7 +103,9 @@ var currentPlayerAnswer;
 
 // Storing answer selection
 $('.answer').on('click', function (event) {
-  clickedButton = event.target;
+  var clickedButton = event.target;
+  $('.answer').attr('class', 'btn btn-secondary answer');
+  $(clickedButton).attr('class', 'btn btn-secondary active answer');
   currentPlayerAnswer = $(clickedButton).text();
   choice = $(clickedButton).attr('id');
   isCorrect = correctButton == choice ? true : false;
@@ -112,6 +114,7 @@ $('.answer').on('click', function (event) {
 // Reward/punishment for correct/incorrect answer respectively
 function updateScore() {
   isCorrect ? score++ : (secondsRemaining -= 10);
+  $('#score').text('Score: ' + score);
 }
 
 // Generating results page
@@ -139,18 +142,24 @@ function writeResult() {
 
 // Displaying results
 function displayResults() {
+  // Hiding empty result table rows
   for (i = 0; i < 20; i++) {
     var resultRow = '#player-answer-' + i;
-    $(resultRow).attr('value') == 'answered' ? '' : ($(resultRow).parent()).hide();
+    $(resultRow).attr('value') == 'answered'
+      ? ''
+      : $(resultRow).parent().hide();
   }
+
+  $('#final-score').text(score);
+  $('#final-time').text(timeFormatted());
 
   if (score >= 16) {
     $('#pass-fail').text('Pass:');
-    $('#pass-fail, #final-score').attr('class', 'text-danger');
+    $('#pass-fail, #final-score').attr('class', 'text-success');
     $('final-score').attr('class,');
   } else {
     $('#pass-fail').text('Fail:');
-    $('#pass-fail, #final-score').attr('class', 'text-success');
+    $('#pass-fail, #final-score').attr('class', 'text-danger');
   }
 
   $('#results-dialogue').attr('class', 'jumbotron responsive-display');
@@ -169,7 +178,7 @@ function timeFormatted() {
   }
 
   // Producing the final string to print
-  var timeDisp = 'Time Remaining: ' + minutesDisp + ':' + secondsDisp;
+  var timeDisp = minutesDisp + ':' + secondsDisp;
   return timeDisp;
 }
 // This function starts and runs the timer
@@ -177,7 +186,7 @@ function startTimer() {
   secondsRemaining = 600;
   timer = setInterval(function () {
     secondsRemaining--;
-    $('#timer').text(timeFormatted());
+    $('#timer').text('Time Remaining: ' + timeFormatted());
 
     // Ending the quiz if time runs out
     if (secondsRemaining <= 0) {
@@ -219,6 +228,7 @@ $(function () {
       $('#question-number').text('Question ' + questionNumber);
       $('#question-count').text('Question: ' + questionNumber + '/20');
       $('.answer').hide(250);
+      $('.answer').attr('class', 'btn btn-secondary answer');
       questionGenerator();
       $('.answer').show(250);
     }
