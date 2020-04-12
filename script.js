@@ -129,12 +129,11 @@ function writeResult() {
   $(playerAnswerSelector).text(currentPlayerAnswer);
 
   var currentRow = $(questionSelector).parent();
-  if (currentTrueAnswer == currentPlayerAnswer){
-    $(currentRow).attr('class', 'table-success')
-} else {
-    $(currentRow).attr('class', 'table-danger')
+  if (currentTrueAnswer == currentPlayerAnswer) {
+    $(currentRow).attr('class', 'table-success');
+  } else {
+    $(currentRow).attr('class', 'table-danger');
   }
-  
 }
 
 // Creating the timer
@@ -161,8 +160,28 @@ function startTimer() {
     secondsRemaining--;
     $('#timer').text(timeFormatted());
 
+    // Ending the quiz if time runs out
     if (secondsRemaining <= 0) {
       clearInterval(timer);
+      $('#quiz-dialogue').hide();
+      $('#timeout-dialogue').show();
+      setTimeout(function () {
+        $('#timeout-dialogue').hide();
+
+        for (i = 0; i < 20; i++) {
+            var resultRow = '#correct-answer-' + i;
+            console.log($(resultRow).text());
+            
+            if (
+              $(resultRow).text() ==
+              'These are not the answers you are looking for'
+            ) {
+              $('.result-row').hide();
+            }
+        }
+
+        $('#results-dialogue').attr('class', 'jumbotron responsive-display');
+      }, 1000);
     }
   }, 1000);
 }
@@ -184,12 +203,18 @@ $(function () {
   $('#next-button').on('click', function () {
     writeResult();
     updateScore();
-    questionCounter++;
-    var questionNumber = questionCounter + 1;
-    $('#question-number').text('Question ' + questionNumber);
-    $('#question-count').text('Question: ' + questionNumber + '/20');
-    $('.answer').hide(250);
-    questionGenerator();
-    $('.answer').show(250);
+
+    if (questionCounter == 20) {
+      $('#quiz-dialogue').hide();
+      $('#results-dialogue').attr('class', '.responsive-display');
+    } else {
+      questionCounter++;
+      var questionNumber = questionCounter + 1;
+      $('#question-number').text('Question ' + questionNumber);
+      $('#question-count').text('Question: ' + questionNumber + '/20');
+      $('.answer').hide(250);
+      questionGenerator();
+      $('.answer').show(250);
+    }
   });
 });

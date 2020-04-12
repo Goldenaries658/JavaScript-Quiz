@@ -29,15 +29,6 @@ small {
   display: block;
 }
 
-#results-dialogue {
-  display: none;
-}
-
-tbody > tr > th {
-  width: 60%;
-  padding-right: 0;
-}
-
 #timeout-dialogue {
   display: none;
   background-color: #e12e1c;
@@ -49,11 +40,21 @@ tbody > tr > th {
   text-align: center;
 }
 
-@media (max-width: 576px) {
-  table {
-    font-size: small;
-  }
+.responsive-display {
+  display: inherit;
 }
+
+.responsive-hide {
+  display: none;
+}
+
+
+
+tbody > tr > th {
+  width: 60%;
+  padding-right: 0;
+}
+
 
 small {
   text-align: center;
@@ -62,4 +63,14 @@ small {
 footer {
   width: 100%;
   bottom: 0px;
+}
+
+@media (max-width: 576px) {
+  .responsive-display {
+    display: inline-block;
+  }
+
+  table {
+    font-size: small;
+  }
 }
