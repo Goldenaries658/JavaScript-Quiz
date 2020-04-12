@@ -56,7 +56,6 @@ function questionGenerator() {
   var currentQuestion = questionCaller[questionCounter].question;
   var currentTrueAnswer = questionCaller[questionCounter].true;
   var currentFalseAnswer = questionCaller[questionCounter].false;
-
   $('#question').text(currentQuestion);
 
   function rand() {
@@ -64,34 +63,57 @@ function questionGenerator() {
     return x;
   }
   randomiser = rand();
-  console.log(randomiser);
-  console.log(currentTrueAnswer);
-  console.log(currentFalseAnswer);
 
   if (randomiser < 2.5) {
     $('#answer0').text(currentTrueAnswer);
     $('#answer1').text(currentFalseAnswer[0]);
     $('#answer2').text(currentFalseAnswer[1]);
     $('#answer3').text(currentFalseAnswer[2]);
+    correctButton = 'answer0';
   } else if (randomiser >= 2.5 && randomiser < 5) {
     $('#answer0').text(currentFalseAnswer[0]);
     $('#answer1').text(currentTrueAnswer);
     $('#answer2').text(currentFalseAnswer[1]);
     $('#answer3').text(currentFalseAnswer[2]);
+    correctButton = 'answer1';
   } else if (randomiser >= 5 && randomiser < 7.5) {
     $('#answer0').text(currentFalseAnswer[0]);
     $('#answer1').text(currentFalseAnswer[1]);
     $('#answer2').text(currentTrueAnswer);
     $('#answer3').text(currentFalseAnswer[2]);
+    correctButton = 'answer2';
   } else {
     $('#answer0').text(currentFalseAnswer[0]);
     $('#answer1').text(currentFalseAnswer[1]);
     $('#answer2').text(currentFalseAnswer[2]);
     $('#answer3').text(currentTrueAnswer);
+    correctButton = 'answer3';
   }
 }
-// Creating the timer
 
+// Evaluating current answer and scoring.
+// Declaring global variables.
+var score = 0;
+var correctButton;
+var choice;
+var isCorrect;
+
+// Storing answer selection
+$('.answer').on('click', function (event) {
+  clickedButton = event.target;
+  choice = $(clickedButton).attr('id');
+  console.log(choice);
+  console.log(correctButton);
+  isCorrect = correctButton == choice ? true : false;
+  console.log(isCorrect);
+});
+
+// Reward/punishment for correct/incorrect answer respectively
+function updateScore() {
+    isCorrect ? score++ : (secondsRemaining -= 10);
+}
+
+// Creating the timer
 // Setting initial variables.
 var secondsRemaining = 600;
 var timer;
@@ -110,9 +132,9 @@ function timeFormatted() {
 }
 // This function starts and runs the timer
 function startTimer() {
+  secondsRemaining = 600;
   timer = setInterval(function () {
     secondsRemaining--;
-    console.log(secondsRemaining);
     $('#timer').text(timeFormatted());
 
     if (secondsRemaining <= 0) {
@@ -136,6 +158,7 @@ $(function () {
 
   // Progressing through the quiz
   $('#next-button').on('click', function () {
+    updateScore();
     questionCounter++;
     var questionNumber = questionCounter + 1;
     $('#question-number').text('Question ' + questionNumber);
