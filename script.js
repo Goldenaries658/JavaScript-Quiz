@@ -51,13 +51,15 @@ var q7 = {
 var questionCaller = [q0, q1, q2, q3, q4, q5, q6, q7];
 var questionCounter = '';
 
-// This generates a question and randomly places the correect answer
+// This generates a question and randomly places the correct answer
 function questionGenerator() {
+  // Dynamic selectors
   var currentQuestion = questionCaller[questionCounter].question;
   var currentTrueAnswer = questionCaller[questionCounter].true;
   var currentFalseAnswer = questionCaller[questionCounter].false;
   $('#question').text(currentQuestion);
 
+  // Randomising answers
   function rand() {
     x = Math.floor(Math.random() * 10);
     return x;
@@ -97,20 +99,42 @@ var score = 0;
 var correctButton;
 var choice;
 var isCorrect;
+var currentPlayerAnswer;
 
 // Storing answer selection
 $('.answer').on('click', function (event) {
   clickedButton = event.target;
+  currentPlayerAnswer = $(clickedButton).text();
   choice = $(clickedButton).attr('id');
-  console.log(choice);
-  console.log(correctButton);
   isCorrect = correctButton == choice ? true : false;
-  console.log(isCorrect);
 });
 
 // Reward/punishment for correct/incorrect answer respectively
 function updateScore() {
-    isCorrect ? score++ : (secondsRemaining -= 10);
+  isCorrect ? score++ : (secondsRemaining -= 10);
+}
+
+// Generating results page
+function writeResult() {
+  // Dynamic selectors
+  var currentQuestion = questionCaller[questionCounter].question;
+  var currentTrueAnswer = questionCaller[questionCounter].true;
+  var questionSelector = '#question-' + questionCounter;
+  var correctAnswerSelector = '#correct-answer-' + questionCounter;
+  var playerAnswerSelector = '#player-answer-' + questionCounter;
+
+  // Writing current data to results page
+  $(questionSelector).text(currentQuestion);
+  $(correctAnswerSelector).text(currentTrueAnswer);
+  $(playerAnswerSelector).text(currentPlayerAnswer);
+
+  var currentRow = $(questionSelector).parent();
+  if (currentTrueAnswer == currentPlayerAnswer){
+    $(currentRow).attr('class', 'table-success')
+} else {
+    $(currentRow).attr('class', 'table-danger')
+  }
+  
 }
 
 // Creating the timer
@@ -158,6 +182,7 @@ $(function () {
 
   // Progressing through the quiz
   $('#next-button').on('click', function () {
+    writeResult();
     updateScore();
     questionCounter++;
     var questionNumber = questionCounter + 1;

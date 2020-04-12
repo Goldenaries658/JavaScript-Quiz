@@ -29,6 +29,21 @@ small {
   display: block;
 }
 
+#results-dialogue {
+  display: inline-block;
+}
+
+tbody > tr > th {
+  width: 60%;
+  padding-right: 0;
+}
+
+@media (max-width: 576px) {
+  table {
+    font-size: small;
+  }
+}
+
 small {
   text-align: center;
 }
