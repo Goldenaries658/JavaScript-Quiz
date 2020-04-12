@@ -127,6 +127,7 @@ function writeResult() {
   $(questionSelector).text(currentQuestion);
   $(correctAnswerSelector).text(currentTrueAnswer);
   $(playerAnswerSelector).text(currentPlayerAnswer);
+  $(playerAnswerSelector).attr('value', 'answered');
 
   var currentRow = $(questionSelector).parent();
   if (currentTrueAnswer == currentPlayerAnswer) {
@@ -136,6 +137,24 @@ function writeResult() {
   }
 }
 
+// Displaying results
+function displayResults() {
+  for (i = 0; i < 20; i++) {
+    var resultRow = '#player-answer-' + i;
+    $(resultRow).attr('value') == 'answered' ? '' : ($(resultRow).parent()).hide();
+  }
+
+  if (score >= 16) {
+    $('#pass-fail').text('Pass:');
+    $('#pass-fail, #final-score').attr('class', 'text-danger');
+    $('final-score').attr('class,');
+  } else {
+    $('#pass-fail').text('Fail:');
+    $('#pass-fail, #final-score').attr('class', 'text-success');
+  }
+
+  $('#results-dialogue').attr('class', 'jumbotron responsive-display');
+}
 // Creating the timer
 // Setting initial variables.
 var secondsRemaining = 600;
@@ -167,20 +186,7 @@ function startTimer() {
       $('#timeout-dialogue').show();
       setTimeout(function () {
         $('#timeout-dialogue').hide();
-
-        for (i = 0; i < 20; i++) {
-            var resultRow = '#correct-answer-' + i;
-            console.log($(resultRow).text());
-            
-            if (
-              $(resultRow).text() ==
-              'These are not the answers you are looking for'
-            ) {
-              $('.result-row').hide();
-            }
-        }
-
-        $('#results-dialogue').attr('class', 'jumbotron responsive-display');
+        displayResults();
       }, 1000);
     }
   }, 1000);
