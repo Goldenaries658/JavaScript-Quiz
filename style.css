@@ -30,12 +30,23 @@ small {
 }
 
 #results-dialogue {
-  display: inline-block;
+  display: none;
 }
 
 tbody > tr > th {
   width: 60%;
   padding-right: 0;
+}
+
+#timeout-dialogue {
+  display: none;
+  background-color: #e12e1c;
+  border-color: #d62c1a;
+}
+
+#timeout-dialogue > h1 {
+  font-size: 7em;
+  text-align: center;
 }
 
 @media (max-width: 576px) {
