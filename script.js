@@ -90,6 +90,36 @@ function questionGenerator() {
     $('#answer3').text(currentTrueAnswer);
   }
 }
+// Creating the timer
+
+// Setting initial variables.
+var secondsRemaining = 600;
+var timer;
+function timeFormatted() {
+  var minutesDisp = Math.floor(secondsRemaining / 60);
+  var secondsDisp = Math.floor(secondsRemaining % 60);
+
+  // Formatting the seconds to always have two digits.
+  if (secondsDisp < 10) {
+    secondsDisp = '0' + secondsDisp;
+  }
+
+  // Producing the final string to print
+  var timeDisp = 'Time Remaining: ' + minutesDisp + ':' + secondsDisp;
+  return timeDisp;
+}
+// This function starts and runs the timer
+function startTimer() {
+  timer = setInterval(function () {
+    secondsRemaining--;
+    console.log(secondsRemaining);
+    $('#timer').text(timeFormatted());
+
+    if (secondsRemaining <= 0) {
+      clearInterval(timer);
+    }
+  }, 1000);
+}
 
 $(function () {
   // Starting the quiz
@@ -98,6 +128,7 @@ $(function () {
     $('#quiz-dialogue').css('display', 'inherit');
     $('#question-number').text('Question 1');
     $('#question-count').text('Question: 1/20');
+    startTimer();
     $('.progress-display').show(500);
     questionCounter = 0;
     questionGenerator();
