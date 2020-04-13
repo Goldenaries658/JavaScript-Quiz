@@ -168,7 +168,7 @@ function displayResults() {
   $('#final-score').text(score);
   $('#final-time').text(timeFormatted());
 
-  if (score >= 16) {
+  if (score >= 8) {
     $('#pass-fail').text('Pass:');
     $('#pass-fail, #final-score').attr('class', 'text-success');
     $('final-score').attr('class,');
