@@ -230,32 +230,39 @@ $(function () {
 
   // Progressing through the quiz
   $('#next-button').on('click', function () {
-    writeResult();
-    updateScore();
-
-    if (questionCounter == numberOfQuestions - 1) {
-      clearInterval(timer);
-      $('#quiz-dialogue').hide(250);
-      displayResults();
+    if (!choice) {
+      alert('You have to pick something!');
+      return;
     } else {
-      questionCounter++;
-      var questionNumber = questionCounter + 1;
-      $('#question-number').text('Question ' + questionNumber);
-      $('.answer').hide(250);
-      $('.answer').attr('class', 'btn btn-secondary answer');
-      questionGenerator();
-      $('.answer').show(250);
+      writeResult();
+      updateScore();
+      choice = null;
+      isCorrect = null;
+
+      if (questionCounter == numberOfQuestions - 1) {
+        clearInterval(timer);
+        $('#quiz-dialogue').hide(250);
+        displayResults();
+      } else {
+        questionCounter++;
+        var questionNumber = questionCounter + 1;
+        $('#question-number').text('Question ' + questionNumber);
+        $('.answer').hide(250);
+        $('.answer').attr('class', 'btn btn-secondary answer');
+        questionGenerator();
+        $('.answer').show(250);
+      }
     }
   });
 
   // Saving Highscore
   $('[type=submit]').on('click', function () {
-    var playerName = $('#name-input').val()
+    var playerName = $('#name-input').val();
     if (score == 1) {
       var highscoreString = score + ' Point.';
     } else {
       var highscoreString = score + ' Points.';
-    } 
+    }
     localStorage.setItem(playerName, highscoreString);
   });
 });
