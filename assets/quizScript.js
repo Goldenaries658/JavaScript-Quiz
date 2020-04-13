@@ -113,7 +113,7 @@ $('.answer').on('click', function (event) {
 
 // Reward/punishment for correct/incorrect answer respectively
 function updateScore() {
-  isCorrect ? score++ : (secondsRemaining -= 10);
+  isCorrect ? score++ : (secondsRemaining -= 15);
   $('#score').text('Score: ' + score);
 }
 
@@ -143,7 +143,7 @@ function writeResult() {
 // Displaying results
 function displayResults() {
   // Hiding empty result table rows
-  for (i = 0; i < 20; i++) {
+  for (i = 0; i < questionCaller.length; i++) {
     var resultRow = '#player-answer-' + i;
     $(resultRow).attr('value') == 'answered'
       ? ''
@@ -166,7 +166,7 @@ function displayResults() {
 }
 // Creating the timer
 // Setting initial variables.
-var secondsRemaining = 600;
+var secondsRemaining = 300;
 var timer;
 function timeFormatted() {
   var minutesDisp = Math.floor(secondsRemaining / 60);
@@ -183,7 +183,7 @@ function timeFormatted() {
 }
 // This function starts and runs the timer
 function startTimer() {
-  secondsRemaining = 600;
+  secondsRemaining = 300;
   timer = setInterval(function () {
     secondsRemaining--;
     $('#timer').text('Time Remaining: ' + timeFormatted());
@@ -207,7 +207,6 @@ $(function () {
     $('#ready-dialogue').css('display', 'none');
     $('#quiz-dialogue').css('display', 'inherit');
     $('#question-number').text('Question 1');
-    $('#question-count').text('Question: 1/20');
     startTimer();
     $('.progress-display').show(500);
     questionCounter = 0;
@@ -219,14 +218,14 @@ $(function () {
     writeResult();
     updateScore();
 
-    if (questionCounter == 20) {
+    if (questionCounter == 10) {
+      clearInterval(timer);
       $('#quiz-dialogue').hide();
-      $('#results-dialogue').attr('class', '.responsive-display');
+      displayResults()
     } else {
       questionCounter++;
       var questionNumber = questionCounter + 1;
       $('#question-number').text('Question ' + questionNumber);
-      $('#question-count').text('Question: ' + questionNumber + '/20');
       $('.answer').hide(250);
       $('.answer').attr('class', 'btn btn-secondary answer');
       questionGenerator();
