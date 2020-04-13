@@ -63,6 +63,7 @@ var q9 = {
 };
 
 var questionCaller = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9];
+var numberOfQuestions = questionCaller.length;
 var questionCounter = '';
 
 // This generates a question and randomly places the correct answer
@@ -157,7 +158,7 @@ function writeResult() {
 // Displaying results
 function displayResults() {
   // Hiding empty result table rows
-  for (i = 0; i < questionCaller.length; i++) {
+  for (i = 0; i < numberOfQuestions; i++) {
     var resultRow = '#player-answer-' + i;
     $(resultRow).attr('value') == 'answered'
       ? ''
@@ -232,9 +233,9 @@ $(function () {
     writeResult();
     updateScore();
 
-    if (questionCounter == 10) {
+    if (questionCounter == (numberOfQuestions - 1)) {
       clearInterval(timer);
-      $('#quiz-dialogue').hide();
+      $('#quiz-dialogue').hide(250);
       displayResults();
     } else {
       questionCounter++;
