@@ -233,7 +233,7 @@ $(function () {
     writeResult();
     updateScore();
 
-    if (questionCounter == (numberOfQuestions - 1)) {
+    if (questionCounter == numberOfQuestions - 1) {
       clearInterval(timer);
       $('#quiz-dialogue').hide(250);
       displayResults();
@@ -246,5 +246,16 @@ $(function () {
       questionGenerator();
       $('.answer').show(250);
     }
+  });
+
+  // Saving Highscore
+  $('[type=submit]').on('click', function () {
+    var playerName = $('#name-input').val()
+    if (score == 1) {
+      var highscoreString = playerName + ': ' + score + ' Point.';
+    } else {
+      var highscoreString = playerName + ': ' + score + ' Points.';
+    } 
+    localStorage.setItem('yourScore', highscoreString);
   });
 });
