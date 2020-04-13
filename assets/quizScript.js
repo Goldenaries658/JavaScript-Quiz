@@ -1,15 +1,14 @@
 // Object with questions and answers stored
 var q0 = {
-  question:
-    'Which of the following is the correct syntax to print a page using JavaScript?',
-  true: 'window.print()',
-  false: ['browser.print()', 'navigator.print();', 'document.print()'],
+  question: 'Javascript is...',
+  true: 'Object Based.',
+  false: ['Subjective', 'Objective', 'Evil'],
 };
 var q1 = {
   question:
     'Which built-in method adds one or more elements to the end of an array and returns the new length of the array?',
   true: 'push()',
-  false: ['last()', 'put()', 'None of the above.'],
+  false: ['last()', 'put()', 'None of these.'],
 };
 var q2 = {
   question:
@@ -47,8 +46,23 @@ var q7 = {
   true: 'sort()',
   false: ['toSource()', 'toString()', 'unshift()'],
 };
+var q8 = {
+  question: 'How do you create an object in JavaScript?',
+  true: 'All of these work.',
+  false: [
+    'var obj = {}',
+    'function Foo() {} var obj = new Foo()',
+    'var obj = new Object()',
+  ],
+};
+var q9 = {
+  question:
+    'Which of the following is the correct syntax to print a page using JavaScript?',
+  true: 'window.print()',
+  false: ['browser.print()', 'navigator.print();', 'document.print()'],
+};
 
-var questionCaller = [q0, q1, q2, q3, q4, q5, q6, q7];
+var questionCaller = [q0, q1, q2, q3, q4, q5, q6, q7, q8, q9];
 var questionCounter = '';
 
 // This generates a question and randomly places the correct answer
@@ -221,7 +235,7 @@ $(function () {
     if (questionCounter == 10) {
       clearInterval(timer);
       $('#quiz-dialogue').hide();
-      displayResults()
+      displayResults();
     } else {
       questionCounter++;
       var questionNumber = questionCounter + 1;
