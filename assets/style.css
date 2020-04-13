@@ -27,7 +27,7 @@ nav,
   padding-bottom: 0;
 }
 
-#question-number {
+.jumbotron > h1 {
   font-size: 3.2em;
   font-weight: 300;
   line-height: 1.2;
@@ -96,4 +96,12 @@ footer {
   table {
     font-size: small;
   }
+}
+
+.card-header {
+  font-size: 2em;
+}
+
+.card-title {
+  font-size: 1.3em;
 }

@@ -252,10 +252,10 @@ $(function () {
   $('[type=submit]').on('click', function () {
     var playerName = $('#name-input').val()
     if (score == 1) {
-      var highscoreString = playerName + ': ' + score + ' Point.';
+      var highscoreString = score + ' Point.';
     } else {
-      var highscoreString = playerName + ': ' + score + ' Points.';
+      var highscoreString = score + ' Points.';
     } 
-    localStorage.setItem('yourScore', highscoreString);
+    localStorage.setItem(playerName, highscoreString);
   });
 });
