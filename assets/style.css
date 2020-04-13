@@ -1,6 +1,21 @@
+body {
+  background-image: url(./bg-pattern.jpg);
+}
+
+nav,
+.jumbotron {
+  box-shadow: 0px 0px 20px 3px black;
+}
+
 .progress-display {
+  z-index: 10;
   display: none;
   margin: 5px 0 0 5px;
+}
+
+#timer,
+#score {
+  box-shadow: 3px 5px 20px 0px black;
 }
 
 #ready-dialogue {
@@ -19,6 +34,7 @@
 }
 
 .answer {
+  box-shadow: 4px 4px 15px black;
   margin: 10px 15%;
   width: 68%;
   height: 147px;
