@@ -12,6 +12,9 @@ The aim of this project was to creat a functional quiz on JavaScript almost pure
 6. [Results Dialogue](#results-dialogue)
 7. [Highscores](#highscores)
 
+## Demo
+https://goldenaries658.github.io/JavaScript-Quiz/
+
 ## Start Dialogue
 This is a simple dialogue that outlines the quiz rules and hold the start button. the start button triggers the [time](#timer) and [score](#score) to display.
 
