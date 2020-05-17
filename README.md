@@ -1,5 +1,8 @@
 # JavaScript Fundamentals Quiz
 
+## Demo
+https://goldenaries658.github.io/JavaScript-Quiz/
+
 ## Summary
 The aim of this project was to creat a functional quiz on JavaScript almost purely using jQuery. It features a static set of multiple choice questions and dynamically placed multipe choice answers which are presented one by one as the user progresses. The quiz also has a actively updated score display and timer; a dynamically generated results page plus the ability to save highscores against your name.
 
@@ -11,9 +14,6 @@ The aim of this project was to creat a functional quiz on JavaScript almost pure
 5. [Timeout Screen](#timeout-screen)
 6. [Results Dialogue](#results-dialogue)
 7. [Highscores](#highscores)
-
-## Demo
-https://goldenaries658.github.io/JavaScript-Quiz/
 
 ## Start Dialogue
 This is a simple dialogue that outlines the quiz rules and hold the start button. the start button triggers the [time](#timer) and [score](#score) to display.
