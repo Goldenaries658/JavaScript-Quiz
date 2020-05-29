@@ -4,7 +4,7 @@
 https://goldenaries658.github.io/JavaScript-Quiz/
 
 ## Summary
-The aim of this project was to creat a functional quiz on JavaScript almost purely using jQuery. It features a static set of multiple choice questions and dynamically placed multipe choice answers which are presented one by one as the user progresses. The quiz also has a actively updated score display and timer; a dynamically generated results page plus the ability to save highscores against your name.
+The aim of this project was to create a functional quiz on JavaScript almost purely using jQuery. It features a static set of multiple choice questions and dynamically placed multiple choice answers which are presented one by one as the user progresses. The quiz also has a actively updated score display and timer; a dynamically generated results page plus the ability to save highscores against your name.
 
 ## Main Features
 1. [Start dialogue](#start-dialogue)
@@ -34,7 +34,7 @@ These are 10 predetermined questions that are updated as the user progresses thr
 This is a red "Time's Up!" dialogue that pops up briefly if the [timer](#timer) reaches zero. It then progresses on to the [results table](#results-dialogue) after a 1sec delay.
 
 ## Results Dialogue
-This simply shows whether the user has passed or failed alongsid etheir score. 
+This simply shows whether the user has passed or failed alongside their score. 
 
 It then features a table with the breakdown of the questions answered and their correct answers, highlighting anything correct in green and incorrect in red.
 
